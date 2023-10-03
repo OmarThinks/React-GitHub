@@ -23,7 +23,8 @@
       "@components": ["./src/components/index.tsx"],
       "@redux": ["./src/redux/index.tsx"],
       "@screens": ["./src/screens/index.tsx"],
-      "@hocs": ["./src/hocs/index.tsx"]
+      "@hocs": ["./src/hocs/index.tsx"],
+      "@services": ["./src/services/index.tsx"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

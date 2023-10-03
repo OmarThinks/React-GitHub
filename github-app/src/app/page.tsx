@@ -1,4 +1,5 @@
 import { Home as HomeScreen } from "@screens";
+import { Repos } from "@services";
 
 async function getData() {
   const res = await fetch(" https://api.github.com/orgs/octokit/repos");
