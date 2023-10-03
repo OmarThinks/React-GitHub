@@ -7,10 +7,12 @@ import { useTheme } from "@mui/material/styles";
 import { changeTheme, themeSelector } from "@redux";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Home() {
+export default function Home({ data }: { data: any }) {
   const theme = useSelector(themeSelector);
   const dispatch = useDispatch();
   const muiTheme = useTheme();
+
+  console.log(data);
 
   //console.log(muiTheme.palette.mode);
 
