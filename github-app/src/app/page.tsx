@@ -12,7 +12,7 @@ async function getData() {
 }
 
 export default async function Home() {
-  const data = await getData();
+  const data = (await getData()) as Repos;
 
   return <HomeScreen data={data} />;
 }
