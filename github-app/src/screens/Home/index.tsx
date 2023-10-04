@@ -6,6 +6,14 @@ import { ForkRight } from "@mui/icons-material";
 import type { SxProps } from "@mui/material";
 import { useTheme } from "@mui/material";
 
+const cursorToNumber = (cursor: string) => {
+  return Number(atob(cursor).split(":")[1].split(",")[0]);
+};
+
+const numberToCursor = (number: Number) => {
+  return btoa(`cursor:${number},`);
+};
+
 const RepoCard = ({ repo, sx }: { repo: Maybe<Repository>; sx?: SxProps }) => {
   return (
     <Card
@@ -36,7 +44,10 @@ export default function Home({ data }: { data: SearchResult<Repository> }) {
   const r = repos?.[0];
 
   console.log(useTheme().palette);
-  console.log(atob("Y3Vyc29yOjE="));
+  console.log(Number(atob("Y3Vyc29yOjE=").split(":")[1]));
+
+  console.log(cursorToNumber("Y3Vyc29yOjE="));
+  console.log(numberToCursor(1));
 
   return (
     <MainLayout>
