@@ -1,5 +1,5 @@
 const AUTH_HEADER =
-  "bearer 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";
+  "bearer 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";
 
 /*
 
@@ -11,16 +11,13 @@ fetch("https://api.github.com/graphql", requestOptions)
 
 const fetchQuery = async (query: string, variables: object = {}) => {
   var myHeaders = new Headers();
-  myHeaders.append(
-    "Authorization",
-    "bearer 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"
-  );
+  myHeaders.append("Authorization", AUTH_HEADER);
   myHeaders.append("Content-Type", "application/json");
 
   var graphql = JSON.stringify({ query, variables });
 
   var requestOptions: RequestInit = {
-    method: "GET",
+    method: "POST",
     headers: myHeaders,
     body: graphql,
     redirect: "follow",
@@ -31,32 +28,11 @@ const fetchQuery = async (query: string, variables: object = {}) => {
     requestOptions
   );
   if (!response.ok) {
-    throw new Error("Failed to fetch data");
+    console.log(response);
+    throw new Error(response.statusText);
   }
   return response.json();
 };
-
-/*
-`
-{
-    search(query: "hi", type: REPOSITORY, first: 50) {
-      userCount
-      repositoryCount
-      nodes {
-        ... on Repository {
-          id
-          name
-          owner {
-            id
-            url
-          }
-        }
-      }
-    }
-  }
-`
-
-*/
 
 export const searchRepos = async (variables: object = {}) => {
   const query = `#graphql

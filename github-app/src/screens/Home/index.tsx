@@ -9,31 +9,7 @@ import { Repos } from "@services";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Home({ data }: { data: Repos }) {
-  const theme = useSelector(themeSelector);
-  const dispatch = useDispatch();
-  const muiTheme = useTheme();
-  const queryString =
-    "q=" + encodeURIComponent("GitHub Octocat in:readme user:defunkt");
-
-  console.log(queryString);
-
-  //console.log(data);
-
-  //console.log(muiTheme.palette.mode);
-
-  const a = data.map((repo, index) => {
-    //console.log(repo);
-    const v = repo.id.toString();
-    return (
-      <Card key={index}>
-        <p>{v}</p>
-        <p>{repo.name}</p>
-        <p>{repo.full_name}</p>
-      </Card>
-    );
-  });
-
-  return <MainLayout>{a}</MainLayout>;
+  return <MainLayout>{"Hi"}</MainLayout>;
 }
 
 //export default MainLayout(Home);
