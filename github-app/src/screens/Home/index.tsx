@@ -36,6 +36,7 @@ export default function Home({ data }: { data: SearchResult<Repository> }) {
   const r = repos?.[0];
 
   console.log(useTheme().palette);
+  console.log(atob("Y3Vyc29yOjE="));
 
   return (
     <MainLayout>
