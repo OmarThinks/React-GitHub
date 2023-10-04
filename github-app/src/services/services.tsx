@@ -1,4 +1,5 @@
-const AUTH_HEADER = "bearer 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";
+import { GITHUB_API_TOKEN } from "./secretToken";
+const AUTH_HEADER = `bearer ${GITHUB_API_TOKEN}`;
 
 const fetchQuery = async (query: string, variables: object = {}) => {
   var myHeaders = new Headers();
