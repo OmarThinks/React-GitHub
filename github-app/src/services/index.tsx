@@ -1,11 +1,19 @@
 import type {
+  Maybe,
   PageInfo,
   Repository,
-  Maybe,
   Scalars,
   SearchResultItemEdge,
 } from "./graphql/generated/index";
+import type { SearchResult } from "./services";
 import { searchRepos } from "./services";
 
 export { searchRepos };
-export type { PageInfo, Repository, Maybe, Scalars, SearchResultItemEdge };
+export type {
+  Maybe,
+  PageInfo,
+  Repository,
+  Scalars,
+  SearchResult,
+  SearchResultItemEdge,
+};

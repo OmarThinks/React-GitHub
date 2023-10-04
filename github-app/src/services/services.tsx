@@ -1,11 +1,11 @@
-import { GITHUB_API_TOKEN } from "./secretToken";
 import {
-  Repository,
   Maybe,
+  PageInfo,
+  Repository,
   Scalars,
   SearchResultItemEdge,
-  PageInfo,
 } from "./graphql/generated";
+import { GITHUB_API_TOKEN } from "./secretToken";
 
 const AUTH_HEADER = `bearer ${GITHUB_API_TOKEN}`;
 

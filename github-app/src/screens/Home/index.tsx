@@ -1,14 +1,10 @@
 "use client";
 import { MainLayout } from "@hocs";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { Box, Button, Card, IconButton, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { changeTheme, themeSelector } from "@redux";
-import { useDispatch, useSelector } from "react-redux";
+import { Repository, SearchResult } from "@services";
 
-export default function Home({ data }: { data: Repos }) {
+export default function Home({ data }: { data: SearchResult<Repository> }) {
   console.log(data);
+  console.log(data.data.search);
 
   return <MainLayout>{"Hi"}</MainLayout>;
 }
