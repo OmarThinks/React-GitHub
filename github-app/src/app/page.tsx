@@ -3,7 +3,7 @@ import type { Repos } from "@services";
 import { searchRepos } from "@services";
 
 async function getData() {
-  return await searchRepos();
+  return await searchRepos({ q: "hi", first: 20 });
 }
 
 export default async function Home() {

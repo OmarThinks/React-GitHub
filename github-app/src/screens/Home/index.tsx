@@ -9,6 +9,8 @@ import { Repos } from "@services";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Home({ data }: { data: Repos }) {
+  console.log(data);
+
   return <MainLayout>{"Hi"}</MainLayout>;
 }
 

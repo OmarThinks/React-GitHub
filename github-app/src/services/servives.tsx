@@ -1,13 +1,4 @@
-const AUTH_HEADER =
-  "bearer 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";
-
-/*
-
-fetch("https://api.github.com/graphql", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.log("error", error));
-*/
+const AUTH_HEADER = "bearer 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";
 
 const fetchQuery = async (query: string, variables: object = {}) => {
   var myHeaders = new Headers();
@@ -34,12 +25,17 @@ const fetchQuery = async (query: string, variables: object = {}) => {
   return response.json();
 };
 
-export const searchRepos = async (variables: object = {}) => {
+export const searchRepos = async (variables: { q: String; first: Number }) => {
   const query = `#graphql
-  {
-      search(query: "hi", type: REPOSITORY, first: 50) {
-        userCount
+    query searchRepos($q: String!, $first: Int!){
+      search(query: $q, type: REPOSITORY, first: $first) {
         repositoryCount
+        pageInfo{
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
         nodes {
           ... on Repository {
             id

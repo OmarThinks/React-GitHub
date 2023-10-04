@@ -125,3 +125,42 @@ type Repo = {
 };
 
 export type Repos = Repo[];
+
+type PageInfo = {
+  hasPreviousPage: Boolean;
+  hasNextPage: Boolean;
+  startCursor: String;
+  endCursor: String;
+};
+
+type Repository = {
+  // colaborators
+  // forks
+  // labels
+  // languages
+  // latestRelease
+  // licenseInfo
+  // owner
+  // packages
+  // primaryLanguage
+  // releases
+  // repositoryTopics
+  createdAt: String;
+  description: String | null;
+  diskUsage: Number | null; // The number of kilobytes this repository occupies on disk
+  forkCount: Number;
+  forkingAllowed: Boolean;
+  homepageUrl: String | null;
+  id: String;
+  isArchived: Boolean;
+  isDisabled: Boolean;
+  isEmpty: Boolean;
+  isFork: Boolean; // Identifies if the repository is a fork.
+  isInOrganization: Boolean;
+  isLocked: Boolean;
+  isMirror: Boolean;
+  isPrivate: Boolean;
+  isTemplate: Boolean;
+  name: String;
+  nameWithOwner: String;
+};
