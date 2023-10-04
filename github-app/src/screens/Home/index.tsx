@@ -1,39 +1,53 @@
 "use client";
 import { MainLayout } from "@hocs";
-import { Card, Typography } from "@mui/material";
-import { Repository, SearchResult } from "@services";
+import { Box, Card, Link as MLInk, Typography } from "@mui/material";
+import type { Maybe, Repository, SearchResult } from "@services";
+import { ForkRight } from "@mui/icons-material";
+import type { SxProps } from "@mui/material";
+import { useTheme } from "@mui/material";
+
+const RepoCard = ({ repo, sx }: { repo: Maybe<Repository>; sx?: SxProps }) => {
+  return (
+    <Card
+      sx={{
+        borderRadius: 5,
+        borderColor: "text.primary",
+        borderWidth: 2,
+        p: 1.5,
+        display: "flex",
+        flexDirection: "column",
+        ...sx,
+      }}
+      variant="elevation"
+    >
+      <MLInk href={"/"} underline="hover" sx={{ alignSelf: "flex-start" }}>
+        <Typography variant="h5">{repo?.nameWithOwner}</Typography>
+      </MLInk>
+      <Typography variant="body2">{repo?.description}</Typography>
+    </Card>
+  );
+};
 
 export default function Home({ data }: { data: SearchResult<Repository> }) {
   console.log(data);
   //console.log(data.data.search);
   const repos = data.data.search.nodes;
   const pageInfo = data.data.search.pageInfo;
+  const r = repos?.[0];
+
+  console.log(useTheme().palette);
 
   return (
     <MainLayout>
       {repos?.map((repo, index) => {
         return (
-          <Card key={index}>
-            <Typography variant="h6">{`Id: ${repo?.id}`}</Typography>
-            <Typography variant="h6">{`Name: ${repo?.name}`}</Typography>
-            <Typography variant="h6">{`Name With Owner: ${repo?.nameWithOwner}`}</Typography>
-            <Typography variant="h6">{`url: ${repo?.url}`}</Typography>
-            <Typography variant="h6">{`description: ${repo?.description}`}</Typography>
-            <Typography variant="h6">{`forkCount: ${repo?.forkCount}`}</Typography>
-            <Typography variant="h6">{`diskUsage: ${repo?.diskUsage}`}</Typography>
-            <Typography variant="h6">{`homepageUrl: ${repo?.homepageUrl}`}</Typography>
-            <Typography variant="h6">{`updatedAt: ${repo?.updatedAt}`}</Typography>
-            <Typography variant="h6">{`stargazerCount: ${repo?.stargazerCount}`}</Typography>
-            <Typography variant="h6">{`createdAt: ${repo?.createdAt}`}</Typography>
-
-            <Typography variant="h6">{`Primary language name: ${repo?.primaryLanguage?.name}`}</Typography>
-            <Typography variant="h6">{`Primary language id: ${repo?.primaryLanguage?.id}`}</Typography>
-
-            <Typography variant="h6">{`owner name: ${repo?.owner.login}`}</Typography>
-            <Typography variant="h6">{`owner id: ${repo?.owner.id}`}</Typography>
-            <Typography variant="h6">{`owner avatar url: ${repo?.owner.avatarUrl}`}</Typography>
-            <Typography variant="h6">{`owner url: ${repo?.owner.url}`}</Typography>
-          </Card>
+          <RepoCard
+            key={index}
+            repo={repo}
+            sx={{
+              m: 1,
+            }}
+          />
         );
       })}
 
@@ -55,6 +69,28 @@ export default function Home({ data }: { data: SearchResult<Repository> }) {
       <Typography variant="h6">
         {`number of Repos: ${data.data.search.repositoryCount}`}
       </Typography>
+
+      <Card>
+        <Typography variant="h6">{`Id: ${r?.id}`}</Typography>
+        <Typography variant="h6">{`Name: ${r?.name}`}</Typography>
+        <Typography variant="h6">{`Name With Owner: ${r?.nameWithOwner}`}</Typography>
+        <Typography variant="h6">{`url: ${r?.url}`}</Typography>
+        <Typography variant="h6">{`description: ${r?.description}`}</Typography>
+        <Typography variant="h6">{`forkCount: ${r?.forkCount}`}</Typography>
+        <Typography variant="h6">{`diskUsage: ${r?.diskUsage}`}</Typography>
+        <Typography variant="h6">{`homepageUrl: ${r?.homepageUrl}`}</Typography>
+        <Typography variant="h6">{`updatedAt: ${r?.updatedAt}`}</Typography>
+        <Typography variant="h6">{`stargazerCount: ${r?.stargazerCount}`}</Typography>
+        <Typography variant="h6">{`createdAt: ${r?.createdAt}`}</Typography>
+
+        <Typography variant="h6">{`Primary language name: ${r?.primaryLanguage?.name}`}</Typography>
+        <Typography variant="h6">{`Primary language id: ${r?.primaryLanguage?.id}`}</Typography>
+
+        <Typography variant="h6">{`owner name: ${r?.owner.login}`}</Typography>
+        <Typography variant="h6">{`owner id: ${r?.owner.id}`}</Typography>
+        <Typography variant="h6">{`owner avatar url: ${r?.owner.avatarUrl}`}</Typography>
+        <Typography variant="h6">{`owner url: ${r?.owner.url}`}</Typography>
+      </Card>
     </MainLayout>
   );
 }

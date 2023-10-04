@@ -1,9 +1,8 @@
 "use client";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import store, { themeSelector } from "@redux";
 import React from "react";
 import { Provider, useSelector } from "react-redux";
-
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export const lightTheme = createTheme({
   palette: {
