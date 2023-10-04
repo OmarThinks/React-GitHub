@@ -114,6 +114,7 @@ export const searchRepos = async (variables: { q: String; first: Number }) => {
               id
               url
               avatarUrl
+              login
             }
           }
         }
