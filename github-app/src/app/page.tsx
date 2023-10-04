@@ -2,7 +2,7 @@ import { Home as HomeScreen } from "@screens";
 import { Repository, SearchResult, searchRepos } from "@services";
 
 async function getData() {
-  return await searchRepos({ q: "hi", first: 20 });
+  return await searchRepos({ q: "hi", first: 10 });
 }
 
 export default async function Home() {

@@ -84,10 +84,10 @@ const fetchQuery = async <T,>(query: string, variables: object = {}) => {
 
 export const searchRepos = async (variables: { q: String; first: Number }) => {
   const query = `#graphql
-    query searchRepos($q: String!, $first: Int!){
+    query searchRepos($q: String!, $first: Int!) {
       search(query: $q, type: REPOSITORY, first: $first) {
         repositoryCount
-        pageInfo{
+        pageInfo {
           endCursor
           hasNextPage
           hasPreviousPage
@@ -97,9 +97,23 @@ export const searchRepos = async (variables: { q: String; first: Number }) => {
           ... on Repository {
             id
             name
+            nameWithOwner
+            url
+            createdAt
+            description
+            forkCount
+            diskUsage
+            homepageUrl
+            updatedAt
+            stargazerCount
+            primaryLanguage {
+              name
+              id
+            }
             owner {
               id
               url
+              avatarUrl
             }
           }
         }
@@ -109,3 +123,67 @@ export const searchRepos = async (variables: { q: String; first: Number }) => {
 
   return await fetchQuery<SearchResult<Repository>>(query, variables);
 };
+
+/*
+
+
+  const query = `#graphql
+query searchRepos($q: String!, $first: Int!) {
+      search(query: $q, type: REPOSITORY, first: $first) {
+        repositoryCount
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+        nodes {
+          ... on Repository {
+            id
+            name
+            nameWithOwner
+            url
+            createdAt
+            description
+            forkCount
+            isArchived
+            isEmpty
+            isFork
+            diskUsage
+            homepageUrl
+            updatedAt
+            stargazerCount
+            primaryLanguage {
+              name
+              id
+            }
+            languages(first:50) {
+              nodes {
+                ... on Language {
+                  name
+                  id
+                }
+              }
+            }
+            releases(first:50) {
+              nodes {
+                id
+                isLatest
+                name
+                description
+              }
+            }
+            owner {
+              id
+              url
+              avatarUrl
+            }
+          }
+        }
+      }
+    }
+  `;
+
+
+
+*/
