@@ -12,55 +12,28 @@ export default function Home({ data }: { data: Repos }) {
   const theme = useSelector(themeSelector);
   const dispatch = useDispatch();
   const muiTheme = useTheme();
+  const queryString =
+    "q=" + encodeURIComponent("GitHub Octocat in:readme user:defunkt");
 
-  console.log(data);
+  console.log(queryString);
+
+  //console.log(data);
 
   //console.log(muiTheme.palette.mode);
 
-  return (
-    <MainLayout>
-      <Box>
-        <Typography>Home</Typography>
-        <Button
-          onClick={() => {
-            dispatch(changeTheme(theme === "light" ? "dark" : "light"));
-          }}
-          color={"secondary"}
-        >
-          Change Theme
-        </Button>
-        <Card></Card>
+  const a = data.map((repo, index) => {
+    //console.log(repo);
+    const v = repo.id.toString();
+    return (
+      <Card key={index}>
+        <p>{v}</p>
+        <p>{repo.name}</p>
+        <p>{repo.full_name}</p>
+      </Card>
+    );
+  });
 
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            bgcolor: "background.default",
-            color: "text.primary",
-            borderRadius: 1,
-            p: 3,
-          }}
-        >
-          {muiTheme.palette.mode} mode
-          <IconButton
-            sx={{ ml: 1 }}
-            onClick={() => {
-              dispatch(changeTheme(theme === "light" ? "dark" : "light"));
-            }}
-            color="inherit"
-          >
-            {muiTheme.palette.mode === "dark" ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
-          </IconButton>
-        </Box>
-      </Box>
-    </MainLayout>
-  );
+  return <MainLayout>{a}</MainLayout>;
 }
 
 //export default MainLayout(Home);

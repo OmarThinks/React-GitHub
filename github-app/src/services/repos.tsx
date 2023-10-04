@@ -124,4 +124,4 @@ type Repo = {
   permissions: Permission;
 };
 
-export type Repos = Map<Number, Repo>;
+export type Repos = Repo[];
